@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Date    : 2018-11-01
 # @Author  : imcake (likaike@gmail.com)
-# @Link    : https://imcake.com
+# @Link    : https://github.com/imcake
 
 ##############################################
 # 计算累积频率分段值（帕累托图）
