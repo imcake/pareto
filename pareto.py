@@ -18,15 +18,17 @@ def get_pareto_penct(csv_name, value_column):
     pencentList = []
     pencentage = 0
     for i in range(len(data_df)):
-        rawList = data_df[value_column].tolist()
+        rawList = data_df[value_column].tolist() # change colume to list
         rawList.sort(reverse=True)
         pencent = float(rawList[i]) / sum(rawList) * 100
-        pencentage = pencentage + pencent
+        pencentage = pencentage + pencent # calculate the accumulated pencentage
         pencentList.append(pencentage)
+    # add pencentage and raw date to a dict
     dictionary = dict(zip(pencentList, rawList))
     init_penct = [10, 20, 30, 40, 50, 60, 70, 80, 90]
     value = []
     for j in init_penct:
+        # get the closest raw date of certain pencentage
         dict_key = min(pencentList, key=lambda x: abs(x - j))
         value.append(dictionary.get(dict_key))
     result_dict = dict(zip(init_penct, value))
