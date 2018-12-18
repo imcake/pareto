@@ -17,11 +17,12 @@ def get_pareto_penct(csv_name, value_column):
     data_df = pd.read_csv(csv_name, header=0)
     pencentList = []
     pencentage = 0
-    for i in range(len(data_df)):
-        rawList = data_df[value_column].tolist() # change colume to list
-        rawList.sort(reverse=True)
-        pencent = float(rawList[i]) / sum(rawList) * 100
-        pencentage = pencentage + pencent # calculate the accumulated pencentage
+    rawList = data_df[value_column].tolist()
+    rawList.sort(reverse=True)
+    sum_raw = sum(rawList)
+    for i in range(len(rawList)):
+        pencent = float(rawList[i]) / sum_raw * 100
+        pencentage = pencentage + pencent  # calculate the accumulated pencentage
         pencentList.append(pencentage)
     # add pencentage and raw date to a dict
     dictionary = dict(zip(pencentList, rawList))
@@ -36,6 +37,6 @@ def get_pareto_penct(csv_name, value_column):
 
 
 if __name__ == '__main__':
-    csv_name = 'pareto.csv' # csv文件名
-    value_column = 'TOTAL' # 需要累积的字段名
+    csv_name = 'pareto.csv'  # csv文件名
+    value_column = 'TOTAL'  # 需要累积的字段名
     print get_pareto_penct(csv_name, value_column)
